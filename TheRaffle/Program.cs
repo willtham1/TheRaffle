@@ -2,7 +2,6 @@
 ////TODO Before running make sure you run dotnet restore to install packages
 
 using CsvHelper;
-using System.Drawing;
 using System.Globalization;
 do
 {
@@ -20,11 +19,9 @@ do
         case "1":
             Console.WriteLine("This insert file: ");
             cleanFile(reader);
-
-
             break;
     }
-} while (true);
+} while (false);
 
 void cleanFile(StreamReader file)
 {
@@ -56,6 +53,11 @@ void cleanFile(StreamReader file)
             index++;
             counter--;
         }
+        foreach(getHeader item in Tickets)
+        {
+            Console.WriteLine(item.Name);
+        }
     }
+
 }
 
