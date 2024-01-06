@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "kUHwZ9MD4JGRonwoMhZpxQS6w+/UVmxi2518+cq/Mi9bPs0ur07XjRRc0AMkDlFXnj53CL/Yh7OHtx4AHs/O2Q==",
+  "dgSpecHash": "Z4PfaIBrzEuLwQkGB3duxOVKRrWrqakMsiensZchuHumRcYTgIUDbqwjn6DWV0kwG9mfeMniLLehxpTlLzDKAg==",
   "success": true,
-  "projectFilePath": "/Users/willtham/Projects/TheRaffle/TheRaffle/TheRaffle.csproj",
+  "projectFilePath": "C:\\Users\\19165\\AppData\\Roaming\\SPB_Data\\TheRaffle\\TheRaffle\\TheRaffle.csproj",
   "expectedPackageFiles": [
-    "/Users/willtham/.nuget/packages/csvhelper/30.0.1/csvhelper.30.0.1.nupkg.sha512"
+    "C:\\Users\\19165\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512"
   ],
   "logs": []
 }
