@@ -25,11 +25,11 @@ do
 
 void cleanFile(StreamReader file)
 {
+    List<getHeader> Tickets = new List<getHeader>();
     Console.WriteLine(file);
     using (var csv = new CsvReader(file, CultureInfo.InvariantCulture))
     {
         var records = csv.GetRecords<getHeader>().ToList();
-        List<getHeader> Tickets = new List<getHeader>();
         int counter = records.Count;
         int index = 0;
         while (counter != 0)
@@ -53,9 +53,19 @@ void cleanFile(StreamReader file)
             index++;
             counter--;
         }
-        foreach(getHeader item in Tickets)
+    }
+    var csvPath = Path.Combine(Environment.CurrentDirectory, $"RaffleTickets.csv");
+    using (var streamWriter = new StreamWriter(csvPath))
+    {
+        using (var csvWriter = new CsvWriter(streamWriter, CultureInfo.InvariantCulture))
         {
-            Console.WriteLine(item.Name);
+            csvWriter.WriteHeader<getHeader>();
+            csvWriter.NextRecord();
+            foreach (var record in Tickets)
+            {
+                csvWriter.WriteRecord(record);
+                csvWriter.NextRecord();
+            }
         }
     }
 
