@@ -32,6 +32,7 @@ void cleanFile(StreamReader file)
         var records = csv.GetRecords<getHeader>().ToList();
         int counter = records.Count;
         int index = 0;
+        //Stores non duplicate submissions into a list of getHeader called Tickets
         while (counter != 0)
         {
             bool TrueOrFalse = true;
@@ -54,6 +55,7 @@ void cleanFile(StreamReader file)
             counter--;
         }
     }
+    //Writes the data in Tickets into a new csv file called RaffleTickets.csv
     var csvPath = Path.Combine(Environment.CurrentDirectory, $"RaffleTickets.csv");
     using (var streamWriter = new StreamWriter(csvPath))
     {
@@ -68,6 +70,5 @@ void cleanFile(StreamReader file)
             }
         }
     }
-
 }
 
