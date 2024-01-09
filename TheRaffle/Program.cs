@@ -24,6 +24,7 @@ do
     switch(randomOption){
         case "1":
             SpecificWinner(Tickets, Winners);
+            RandomWinner(Tickets, Winners);
             PrintWinner(Winners);
             break;
         case "2":
