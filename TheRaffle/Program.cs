@@ -1,6 +1,5 @@
 // Were going to do a CLI first (Command Line Interface) once this works fully well go into a gui
 ////TODO Before running make sure you run dotnet restore to install packages
-using System;
 using CsvHelper;
 using System.Globalization;
 
@@ -100,7 +99,10 @@ void SpecificWinner(List<getHeader> Tickets, List<getHeader> Winners)
             string? name = Console.ReadLine();
             foreach (getHeader item in Tickets)
             {
-                if (name.Equals(item.Name))
+                string? validName = name.ToLower();
+                string? validTicketName = item.Name.ToLower();
+
+                if (validName.Equals(validTicketName))
                 {
                     Winners.Add(item);
                     doesNameExist = true;
