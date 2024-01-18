@@ -25,15 +25,16 @@ do
         case "1":
             SpecificWinner(Tickets, Winners);
             RandomWinner(Tickets, Winners);
-            PrintWinner(Winners);
             break;
         case "2":
             RandomWinner(Tickets, Winners);
-            PrintWinner(Winners);
             break;
 
     }
+    PrintWinner(Winners);
+    WinnerToCSV(Winners);
 } while (false);
+
 
 void cleanFile(StreamReader file, List<getHeader> Tickets)
 {
@@ -51,9 +52,10 @@ void cleanFile(StreamReader file, List<getHeader> Tickets)
             {
                 foreach (getHeader item in Tickets)
                 {
-                    if (item.Name.Equals(records[index].Name))
+                    if (item.Name.Equals(records[index].Name) && item.Email.Equals(records[index].Email))
                     {
                         TrueOrFalse = false;
+                        Console.WriteLine("Removed dupe [{0}]: \n", records[index].Name);
                     }
                 }
             }
@@ -80,6 +82,8 @@ void cleanFile(StreamReader file, List<getHeader> Tickets)
             }
         }
     }
+
+
     Console.WriteLine("Updated file is saved in: {0}", csvPath);
 }
 void SpecificWinner(List<getHeader> Tickets, List<getHeader> Winners)
@@ -119,7 +123,7 @@ void SpecificWinner(List<getHeader> Tickets, List<getHeader> Winners)
 void RandomWinner(List<getHeader> Tickets, List<getHeader> Winners)
 {
     Random random = new Random();
-    Console.WriteLine("How many winners do you want to choose from {0} submissions? " +
+    Console.WriteLine("How many random winners do you want to choose from {0} submissions? " +
                       "(If names were chosen, how many winners do you want to choose on top of the chosen?)", Tickets.Count);
     string? number = Console.ReadLine();
     int numOfWinners = Convert.ToInt32(number);
@@ -138,6 +142,24 @@ void PrintWinner(List<getHeader> Winners)
     {
         Console.WriteLine("Winner {0} is {1} :0", index, item.Name);
         index++;
+    }
+}
+
+void WinnerToCSV(List<getHeader> Winners)
+{
+    var winnerPath = Path.Combine(Environment.CurrentDirectory, $"Winners.csv");
+    using (var streamWriter2 = new StreamWriter(winnerPath))
+    {
+        using (var csvWriter2 = new CsvWriter(streamWriter2, CultureInfo.InvariantCulture))
+        {
+            csvWriter2.WriteHeader<getHeader>();
+            csvWriter2.NextRecord();
+            foreach (var record in Winners)
+            {
+                csvWriter2.WriteRecord(record);
+                csvWriter2.NextRecord();
+            }
+        }
     }
 }
 
